@@ -1,0 +1,35 @@
+# Produced by CVXGEN, 2018-12-05 06:56:51 -0500.
+# CVXGEN is Copyright (C) 2006-2017 Jacob Mattingley, jem@cvxgen.com.
+# The code in this file is Copyright (C) 2006-2017 Jacob Mattingley.
+# CVXGEN, or solvers produced by CVXGEN, cannot be used for commercial
+# applications without prior written permission from Jacob Mattingley.
+
+# Filename: description.cvxgen.
+# Description: A description of the CVXGEN problem.
+
+dimensions
+  n = 3
+end
+
+parameters
+  Q (n,n) symmetric psd;
+  dbx (n);
+  f (n);
+  g (n,n);
+  W (1);
+  L (1);
+  N (1);
+  dbt (1);
+  alpha (1);
+  norm_dbx (1);
+end
+
+variables
+  u (n);
+end
+
+minimize
+  quad(u,Q)
+subject to
+  dbx'*(f+g*u)>=norm_dbx*(W+L)-N*(dbt+alpha)
+end
